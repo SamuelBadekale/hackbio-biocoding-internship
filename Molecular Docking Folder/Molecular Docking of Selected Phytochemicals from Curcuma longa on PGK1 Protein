@@ -1,0 +1,65 @@
+# Molecular Docking of Selected Phytochemicals from *Curcuma longa* on PGK1 Protein
+
+## Introduction
+
+Breast cancer is a common type of cancer affecting women worldwide and a leading cause of cancer-related deaths. The complexity and variability of breast cancer make it challenging to treat, especially in its more aggressive forms (Sung et al., 2021). The search for novel, more targeted therapies continues to grow due to the resistance to conventional treatments such as chemotherapy. One approach being explored is using natural compounds with anticancer properties, such as those in medicinal plants (Newman and Cragg, 2020). Medicinal plants have long been a good source of drugs, for example, the Madagascar periwinkle which is used for treating cancer (Moudi et al., 2013).
+
+*Curcuma longa*, commonly known as turmeric, is a plant that has been used in traditional medicine for centuries, particularly due to its bioactive compounds. It contains several active compounds called phytochemicals, curcumin being the most well-known for its antioxidant, anti-inflammatory, and anticancer properties (Gupta et al., 2011). Given their diverse biological activity, phytochemicals from *Curcuma longa* are being investigated for their potential role in cancer therapy, including breast cancer (Gupta et al., 2012).
+
+Phosphoglycerate Kinase 1 (PGK1) is critical in promoting tumor cell proliferation and inhibiting apoptosis. Its oncogenic role has been observed across various cancer types, including liver cancer, colon cancer, breast cancer, and glioblastoma multiforme (GBM). PGK1 is significantly upregulated in multiple tumor tissues compared to non-tumor tissues, reinforcing its association with cancer progression.
+
+Key post-translational modifications (PTMs) like acetylation and O-GlcNAcylation regulate PGK1 activity, promoting cancer cell proliferation. For instance, acetylation at K323 enhances PGK1's enzymatic activity, contributing to liver cancer cell proliferation (Hu et al., 2017). PGK1 also influences the glycolytic pathway (Warburg effect), which supports the energy needs of rapidly proliferating cancer cells. Additionally, PGK1 promotes DNA replication and autophagy in cancer cells, which are essential for tumor survival and growth (Hu et al., 2017).
+
+By docking phytochemicals from *Curcuma longa* with PGK1, this study aims to evaluate their potential as inhibitors, providing insight into natural compounds that could lead to novel breast cancer treatments.
+
+## Materials and Methods
+
+### Phytochemical Library
+Phytochemicals were selected from *Curcuma longa* (Iweala et al., 2023).
+
+### Molecular Docking
+
+- Protein structure (4O33) was obtained from RCSB PDB and downloaded in the protein data bank (PDB) format.
+- Pocket data describing the coordinates of all amino acids present was done using CASTp analysis of 4O33 protein.
+- The active site was visualized and labeled using PyMOL.
+- Structure Data File (SDF) of 53 selected phytochemicals from *Curcuma longa* was downloaded from PubChem.
+- Protein was loaded on AutoDock Vina, water molecules and heteroatoms were removed, and missing atoms were included.
+- Polar hydrogens and Kollman charges were added, and the molecule was saved in PDBQT format.
+- Energy minimization of the SDF files was done using:
+  ```bash
+  obminimize
+  obminimize -ff MMFF94 -n 1000 *.sdf
+  obabel -isdf *.sdf -opdbqt -O*.pdbqt
+  ```
+- A conformation text file was created for molecular docking using average x, y, and z coordinates of the active site.
+- All ligand names were stored in a text file:
+  ```bash
+  ls >ligand.txt
+  ```
+- A Perl script was used to automate docking:
+  ```bash
+  perl vina_linux.pl
+  ```
+- The results were collated using:
+  ```bash
+  tail -n11 *.txt > results.txt
+  ```
+
+## Results and Discussion
+
+Molecular docking results (Table 2) show that eight phytochemicals—α-Cedrene, β-Bisabolene, Curzerenone, Dihydrocurcumin, p-Cymene, Caffeic acid, α-Humulene, and δ-Cadinene—have the best binding affinities, ranging from -7.7 to -8.3. This suggests their potential in inhibiting cancer cell proliferation for breast cancer treatments.
+
+This study provides a pipeline for protein-ligand docking. PubChem and PyRx are open-access resources, making this pipeline easily replicable and adaptable for various docking projects, contributing to cancer drug discovery through natural products.
+
+## Conclusion
+
+The potential of phytochemicals derived from turmeric to target PGK1 has been demonstrated in this study. Further experimental studies can be carried out to confirm the efficacy of these phytochemicals.
+
+## References
+
+- Sung, H., Ferlay, J., Siegel, R. L., Laversanne, M., Soerjomataram, I., Jemal, A., & Bray, F. (2021). Global Cancer Statistics 2020: GLOBOCAN Estimates of Incidence and Mortality Worldwide for 36 Cancers in 185 Countries. *CA: A Cancer Journal for Clinicians, 71*(3), 209-249. [https://doi.org/10.3322/caac.21660](https://doi.org/10.3322/caac.21660)
+- Newman, D. J., & Cragg, G. M. (2020). *Journal of Natural Products, 83*(3), 770-803. [https://doi.org/10.1021/acs.jnatprod.9b01285](https://doi.org/10.1021/acs.jnatprod.9b01285)
+- Moudi, M., Go, R., Yien, C. Y. S., & Nazre, M. (2013). *International Journal of Preventive Medicine, 4*(11), 1231–1235.
+- Gupta, S. C., Prasad, S., Kim, J. H., Patchva, S., Webb, L. J., Priyadarsini, I. K., & Aggarwal, B. B. (2011). *Natural Product Reports, 28*(12), 1937. [https://doi.org/10.1039/c1np00051a](https://doi.org/10.1039/c1np00051a)
+- Gupta, S. C., Patchva, S., & Aggarwal, B. B. (2012). *The AAPS Journal, 15*(1), 195-218. [https://doi.org/10.1208/s12248-012-9432-8](https://doi.org/10.1208/s12248-012-9432-8)
+- Hu, H., Zhu, W., Qin, J., Chen, M., Gong, L., Li, L., Liu, X., Tao, Y., Yin, H., Zhou, H., Zhou, L., Ye,
