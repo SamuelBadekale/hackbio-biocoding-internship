@@ -1,0 +1,41 @@
+'''
+The task for stage 0:
+Topics Covered: Coding Syntax, Data types and Data Structures
+Instructions
+Form a team of at most 5 people with different programming languages
+Using either R and Python. I.e, produce the solution with only one of R and Python
+Use any data structure of your choice to organize the following information
+Your names
+Your slack username
+Your email
+Your hobby
+Your countries
+Your discipline
+Your preferred programming language
+Don’t use functions, loops, conditionals or any complex concepts
+Your code should include a final print statement that prints the organized output in a logical and understandable way
+Finally, create a simple video tutorial that includes all your team mate. Publish the video on linkedin and remember to tag us. We will like it.
+Modules to study:
+R
+Stage 1: R Syntax
+Stage 2: R Data Types
+Stage 3: Data Structure
+Python
+Stage 1: Python Syntax
+Stage 2: Python Data Types
+Stage 3: Data Structures
+
+SUBMISSION FOR "TEAM SUPER SERINE" Link to LinkedIn:
+'''
+
+#R Code
+super_serine_members <- data.frame(
+  Names = c("Samuel Badekale", "Valerie Martins", "Zainab Suleiman", "Uwidia Emmanuel"),
+  Slack_username = c("Samuelbadekale", "Valarie", "Bnt_Suleiman", "Uwidia"),
+  Email = c("samuelbadekale@gmail.com", "val4martins@gmail.com", "suleimanzainab280@gmail.com", "uwidiaosalodion@gmail.com"),
+  Hobby = c("Reading, Watching movies and playing games", "Watching movies", "Reading", "Reading and taking walks"),
+  Country = c("Nigeria", "Nigeria", "Nigeria","Nigeria"),
+  Discipline = c("Cell Biology and Genetics", "Cell and Molecular Biology", "Biochemistry", "Medical Biochemistry"),
+  Preferred_programming_language = c("Python", "Python", "R", "Python")
+)
+print(super_serine_members)
