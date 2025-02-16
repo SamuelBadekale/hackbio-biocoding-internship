@@ -1,0 +1,8 @@
+def hamming_distance(twitter_handle, slack_username):
+    hamming_count = 0
+    for letters in range(len(twitter_handle)):
+        if twitter_handle[letters] != slack_username[letters]:
+            hamming_count += 1
+    print(f"The hamming distance between {twitter_handle} and {slack_username} is {hamming_count}")
+
+hamming_distance("SamuelBadekale","SBadekale.....")
