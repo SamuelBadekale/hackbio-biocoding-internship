@@ -1,0 +1,33 @@
+#Write a function for determining the time to reach 80% of the maximum growth; usually the carrying capacity
+def time_to_reach_K(time, K = 1000):
+    loop_range = range(time+1)#"time + 1" is to meet the actual time inputed
+    midpoint = sum(loop_range)/len(loop_range)
+    lag_range = (time % 11) + 5#randomizes lag phase duration
+    exp_range = (time % 17) + 20#randomizes exponential phase duration
+    p = 0.8 * K
+    for minutes in loop_range:
+        if minutes < lag_range:
+            r = 0.2#A slower growth rate make growth slower in the lag phase. Since the lower the growth rate, the slower the increase in population size
+            logistic_growth = K / (1 + (2.71828**(-r*(minutes-midpoint))))
+            if logistic_growth >= p:#After every minute, check if the population size is up to 80% of the carrying capacity. Once it encounters it, stop the code
+                print(f"The time it takes to reach eighty percent of the carrying capacity, 'K' is {minutes} minutes")
+                break
+        elif minutes > lag_range and minutes <= exp_range:#make growth rate faster in the exponential phase
+            r =0.7
+            logistic_growth = K / (1 + (2.71828**(-r*(minutes-midpoint))))
+            if logistic_growth >= p:#After every minute, check if the population size is up to 80% of the carrying capacity. Once it encounters it, stop the code
+                print(f"The time it takes to reach eighty percent of the carrying capacity, 'K' is {minutes} minutes")
+                break
+        elif minutes > exp_range:#Growth rate reduces to ensure transition into stationary phase
+            r = 0.5
+            logistic_growth = K / (1 + (2.71828**(-r*(minutes-midpoint))))
+            if logistic_growth >= p:#After every minute, check if the population size is up to 80% of the carrying capacity. Once it encounters it, stop the code
+                print(f"The time it takes to reach eighty percent of the carrying capacity, 'K' is {minutes} minutes")
+                break
+    return midpoint
+    return p
+    return r
+    return K
+    return logistic_growth
+
+example = time_to_reach_K(100)
